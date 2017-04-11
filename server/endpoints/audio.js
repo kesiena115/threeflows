@@ -23,7 +23,10 @@ function post(s3) {
       uuid.v4()
     ].join('_');
     console.log(`Received ${request.body.length} bytes of audio.`);
-
+    console.log('----------');
+    console.log(request);
+    console.log(request.body);
+    console.log('----------');
     var params = {
       Body: request.body,
       Bucket: 'message-popup',
