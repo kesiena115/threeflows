@@ -4,6 +4,7 @@ import React from 'react';
 import uuid from 'uuid';
 import VelocityTransitionGroup from "velocity-react/velocity-transition-group";
 
+
 import * as Api from '../../helpers/api.js';
 import LinearSession from '../linear_session/linear_session.jsx';
 import SessionFrame from '../linear_session/session_frame.jsx';
@@ -12,12 +13,14 @@ import {VideoAlphaScenarios} from './video_alpha_scenarios.js';
 import type {QuestionT} from './video_alpha_scenarios.js';
 import YouTube from 'react-youtube';
 import MinimalOpenResponse from '../renderers/minimal_open_response.jsx';
-
+import VideRecorder from '../../components/video_recorder.jsx';
 
 type ResponseT = {
   choice:string,
   question:QuestionT
 };
+
+
 
 
 
@@ -106,6 +109,7 @@ export default React.createClass({
   renderIntro() {
     return (
       <IntroWithEmail defaultEmail={this.state.email} onDone={this.onStart}>
+        <VideRecorder />
         <div>
             <p>Welcome!</p>
             <p>You will go through a set of video scenarios that simulate the conversation between you and a parent.</p>
