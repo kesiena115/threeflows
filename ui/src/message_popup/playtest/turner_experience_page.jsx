@@ -9,8 +9,8 @@ import * as Api from '../../helpers/api.js';
 import LinearSession from '../linear_session/linear_session.jsx';
 import SessionFrame from '../linear_session/session_frame.jsx';
 import IntroWithEmail from '../linear_session/intro_with_email.jsx';
-import {VideoAlphaScenarios} from './video_alpha_scenarios.js';
-import type {QuestionT} from './video_alpha_scenarios.js';
+import {TurnerScenarios} from './turner_scenarios.js';
+import type {QuestionT} from './turner_scenarios.js';
 import YouTube from 'react-youtube';
 import MinimalOpenResponse from '../renderers/minimal_open_response.jsx';
 import VideRecorder from '../../components/video_recorder.jsx';
@@ -27,7 +27,7 @@ type ResponseT = {
 // The top-level page, manages logistics around email, questions,
 // and the display of instructions, questions, and summary.
 export default React.createClass({
-  displayName: 'VideoAlphaExperiencePage',
+  displayName: 'TurnerExperiencePage',
 
   contextTypes: {
     auth: React.PropTypes.object.isRequired
@@ -46,7 +46,7 @@ export default React.createClass({
   },
 
   onStart(email) {
-    const questions = VideoAlphaScenarios.questions();
+    const questions = TurnerScenarios.questions();
     this.setState({
       email,
       questions,
@@ -166,7 +166,7 @@ export default React.createClass({
             onLogMessage={onLog}
             forceResponse={true}
             onResponseSubmitted={this.onRecordingDone.bind(this, onResponseSubmitted)}
-          /> 
+          />
         </VelocityTransitionGroup>
         );
     } else {
@@ -204,7 +204,7 @@ export default React.createClass({
                   }} 
                 />
               </div>
-              <p style={styles.summaryParagraph}>Response:</p>
+              <p style={styles.responseLabel}>Your Response:</p>
               <audio key={'response-' + i} controls={true} src={response.audioResponse.downloadUrl} style={{paddingTop: 0, paddingBottom: 20}}/>
             </div>
           
@@ -256,9 +256,10 @@ const styles = {
     paddingTop: 10,
     paddingBottom: 10
   },
-  summaryParagraph: {
+  responseLabel: {
     marginTop: 10,
-    marginBottom: 0
+    marginBottom: 0,
+    fontSize: 12
   },
   videoContainer: {
     height: 230
