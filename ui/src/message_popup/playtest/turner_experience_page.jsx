@@ -94,6 +94,8 @@ export default React.createClass({
   },
 
   render() {
+    console.log("----------");
+    console.log(this.state.recording);
     return (
       <SessionFrame onResetSession={this.onResetSession}>
         {this.renderContent()}
@@ -129,15 +131,22 @@ export default React.createClass({
   },
 
   renderQuestionEl(question:QuestionT, onLog, onResponseSubmitted) {
+    // return (
+    //   <div>
+    //     <div>
+    //       {this.renderScenarioEl(question)}
+    //     </div>
+    //     <div>
+    //       {this.renderResponseEl(onLog, onResponseSubmitted)}
+    //     </div>
+    //   </div>
+    // ); 
     return (
-      <div>
-        <div>
-          {this.renderScenarioEl(question)}
-        </div>
-        <div>
-          {this.renderResponseEl(onLog, onResponseSubmitted)}
-        </div>
-      </div>
+      <InstantResponseScenario 
+        onLogMessage={onLog}
+        onResponseSubmitted={this.onRecordingDone.bind(this, onResponseSubmitted)}
+        question={question}
+      />
     ); 
   },
 
